@@ -23,8 +23,17 @@ Route::delete('/profile', 'App\Http\Controllers\profile@index');
 Route::get('/me', 'App\Http\Controllers\AuthController@me');
 
 // Route::resource('/books', BookController::class);
+//book
 Route::get('/books' ,'App\Http\Controllers\BookController@index');
 Route::post('/books' ,'App\Http\Controllers\BookController@store');
 Route::get('/books/{id}' ,'App\Http\Controllers\BookController@show');
 Route::put('/books/{id}' ,'App\Http\Controllers\BookController@update');
 Route::delete('/books/{id}' ,'App\Http\Controllers\BookController@destroy');
+
+
+//Author
+Route::get('/authors' ,'App\Http\Controllers\AuthorController@index');
+Route::post('/authors' ,'App\Http\Controllers\AuthorController@store');
+Route::get('/authors/{id}' ,'App\Http\Controllers\AuthorController@show');
+Route::put('/authors/{id}' ,'App\Http\Controllers\AuthorController@update');
+Route::delete('/authors/{id}' ,'App\Http\Controllers\AuthorController@destroy');
