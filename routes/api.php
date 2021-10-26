@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +30,10 @@ Route::post('/books' ,'App\Http\Controllers\BookController@store');
 Route::get('/books/{id}' ,'App\Http\Controllers\BookController@show');
 Route::put('/books/{id}' ,'App\Http\Controllers\BookController@update');
 Route::delete('/books/{id}' ,'App\Http\Controllers\BookController@destroy');
+
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+//Route::post('/me', [AuthController::class, 'me']);
+Route::post('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
+
+//Route::post('/register', 'App\Http\Controllers\AuthController@register');
