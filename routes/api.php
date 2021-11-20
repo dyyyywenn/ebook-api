@@ -4,8 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
-
-
+use App\Http\Controllers\AuthorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,28 +21,21 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Route::delete('/profile', 'App\Http\Controllers\profile@index');
+Route::get('/me', [AuthController::class, 'me']);
 
-//Route::get('/me', 'App\Http\Controllers\AuthController@me');
+Route::get('/books', [BookController::class, 'index']);
+Route::post('/books', [BookController::class, 'store'])->middleware('auth:sanctum');
+Route::get('/books/{id}', [BookController::class, 'show']);
+Route::put('/books/{id}', [BookController::class, 'update'])->middleware('auth:sanctum');
+Route::delete('books/{id}', [BookController::class, 'destroy'])->middleware('auth:sanctum');
 
-//Route::resource('/books', BookController::class);
-Route::get('/books' ,'App\Http\Controllers\BookController@index');
-Route::post('/books' ,'App\Http\Controllers\BookController@store');
-Route::get('/books/{id}' ,'App\Http\Controllers\BookController@show');
-Route::put('/books/{id}' ,'App\Http\Controllers\BookController@update');
-Route::delete('/books/{id}' ,'App\Http\Controllers\BookController@destroy');
+Route::get('/authors', [AuthorController::class, 'index']);
+Route::post('/authors', [AuthorController::class, 'store'])->middleware('auth:sanctum');
+Route::get('/authors/{id}', [AuthorController::class, 'show']);
+Route::put('/authors/{id}', [AuthorController::class, 'update'])->middleware('auth:sanctum');
+Route::delete('/authors/{id}', [AuthorController::class, 'destroy'])->middleware('auth:sanctum');
 
 Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login'])->name('login');
-//Route::post('/me', [AuthController::class, 'me']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/me', [AuthController::class, 'me']);
 Route::post('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
-
-//Route::post('/register', 'App\Http\Controllers\AuthController@register');
-
-//Author
-Route::get('/authors' ,'App\Http\Controllers\AuthorController@index');
-Route::post('/authors' ,'App\Http\Controllers\AuthorController@store');
-Route::get('/authors/{id}' ,'App\Http\Controllers\AuthorController@show');
-Route::put('/authors/{id}' ,'App\Http\Controllers\AuthorController@update');
-Route::delete('/authors/{id}' ,'App\Http\Controllers\AuthorController@destroy');
-

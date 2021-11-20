@@ -14,10 +14,11 @@ class AuthorController extends Controller
      */
     public function index()
     {
+        $authors = Author::get();
         return response()->json([
             "message" => "Daftar Pengarang",
             "status" => "200",
-            "data" => Author::all()
+            "data" => $authors
         ]);
     }
 
